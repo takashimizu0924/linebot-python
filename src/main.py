@@ -70,12 +70,9 @@ def callback():
 @handler.add(PostbackEvent)
 def on_PostBack(event):
     msg = event.postback.data
-    txt = event.postback.text
-    print(msg)
-    print(txt)
     linebot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = "Postbackからです")
+        TextSendMessage(text = "Postbackからです"+msg)
     )
 
 @handler.add(MessageEvent, message=TextMessage)
