@@ -1,1 +1,1 @@
-web: gunicorn main:callback --log-file -
+web: gunicorn main:app --log-file -
