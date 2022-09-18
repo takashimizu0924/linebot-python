@@ -75,7 +75,7 @@ def on_PostBack(event):
     print(txt)
     linebot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="成功です"+msg + txt )
+        messages=msg
     )
 
 @handler.add(MessageEvent, message=TextMessage)
