@@ -75,14 +75,14 @@ def on_PostBack(event):
     print(txt)
     linebot_api.reply_message(
         event.reply_token,
-        messages=msg
+        messages=txt
     )
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     linebot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text )
+        TextSendMessage(text="テスト中" )
     )
 if __name__ == "__main__":
     app.run()
