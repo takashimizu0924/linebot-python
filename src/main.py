@@ -6,11 +6,13 @@ from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
 
-import configparser
-config_ini = configparser.ConfigParser()
-config_ini.read('./config.ini',encoding='utf=8')
-secret_key = config_ini['LineAPI']['channel_token']
-channel_secret = config_ini['LineAPI']['channel_secret']
+# import configparser
+# config_ini = configparser.ConfigParser()
+# config_ini.read('./config.ini',encoding='utf=8')
+# secret_key = config_ini['LineAPI']['channel_token']
+# channel_secret = config_ini['LineAPI']['channel_secret']
+secret_key = "5/zq9yuD6VLOd8zxTcI/aI4z2URKONA0tggDGU9yjBdZRKqAQfu+DcO/cpptHweOUMXs05qXqE23SKyzPgS1+6Su5Sn3WyF6pMmGXwXDld/err+ofEwxeL/eNOXwhojSNcw3WhA7XW1wd1k0hc9yXgdB04t89/1O/w1cDnyilFU="
+channel_secret = "fafb23966c549ef943444db51ae9baa5"
 
 linebot_api = LineBotApi(secret_key)
 handler = WebhookHandler(channel_secret)
