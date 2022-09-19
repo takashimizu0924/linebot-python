@@ -5,6 +5,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,PostbackEvent,MessageEvent,TextMessage,TextSendMessage)
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
+from postback_action_manager import weather_action
 
 # import configparser
 # config_ini = configparser.ConfigParser()
@@ -19,38 +20,6 @@ handler = WebhookHandler(channel_secret)
 
 app = Flask(__name__)
 
-# rich_menu_to_create = RichMenu(
-#     size=RichMenuSize(width=2500, height=1686),
-#     selected=True,
-#     name='test_rich_menu',
-#     chat_bar_text='メニュー',
-#     areas=[
-#         RichMenuArea(
-#             bounds=RichMenuBounds(x=0,y=0,width=1273,height=868),
-#             action=PostbackAction(data='renew',text="sample")
-#         ),
-#         RichMenuArea(
-#             bounds=RichMenuBounds(x=1278,y=0,width=1211,height=864),
-#             action=PostbackAction(data='deadline')
-#         ),
-#         RichMenuArea(
-#             bounds=RichMenuBounds(x=0,y=864,width=1268,height=818),
-#             action=PostbackAction(data='not_submitted')
-#         ),
-#         RichMenuArea(
-#             bounds=RichMenuBounds(x=1273,y=877,width=1227,height=805),
-#             action=PostbackAction(data='forget')
-#         ),
-#     ]
-# )
-
-# richMenuId = linebot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-
-
-# with open("richmenu1.png",'rb') as f:
-#     linebot_api.set_rich_menu_image(richMenuId, "image/png",f)
-
-# linebot_api.set_default_rich_menu(richMenuId)
 @app.route('/')
 def index():
     return 'Hello wold'
@@ -69,7 +38,21 @@ def callback():
 
 @handler.add(PostbackEvent)
 def on_PostBack(event):
-    msg = event.postback.data
+    postback_data = event.postback.data
+    if postback_data == 'renew':
+        #一番左側
+        print('left')
+    elif postback_data == 'deadline':
+        #左側
+        print('left1')
+    elif postback_data == 'not_submitted':
+        print('right')
+    elif postback_data == 'forget':
+        print('right1')
+    else:
+        print('else')
+    
+
     linebot_api.reply_message(
         event.reply_token,
         TextSendMessage(text = "Postbackからです"+msg)
@@ -82,4 +65,5 @@ def handle_message(event):
         TextSendMessage(text="テスト中" )
     )
 if __name__ == "__main__":
+    weather_action()
     app.run()
