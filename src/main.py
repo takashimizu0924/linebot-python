@@ -55,7 +55,7 @@ def on_PostBack(event):
 
     linebot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = "Postbackからです"+msg)
+        TextSendMessage(text = "Postbackからです")
     )
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -66,4 +66,4 @@ def handle_message(event):
     )
 if __name__ == "__main__":
     weather_action()
-    app.run()
+    # app.run()
