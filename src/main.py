@@ -65,5 +65,5 @@ def handle_message(event):
         TextSendMessage(text="テスト中" )
     )
 if __name__ == "__main__":
-    weather_action()
+    # weather_action()
     app.run()
