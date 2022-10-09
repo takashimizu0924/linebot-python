@@ -5,7 +5,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,PostbackEvent,MessageEvent,TextMessage,TextSendMessage)
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
-from postback_action_manager import weather_action
+# from postback_action_manager import weather_action
 
 # import configparser
 # config_ini = configparser.ConfigParser()
