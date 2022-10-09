@@ -42,6 +42,10 @@ def on_PostBack(event):
     if postback_data == 'renew':
         #一番左側
         print('left')
+        linebot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text = "renewです")
+    )
     elif postback_data == 'deadline':
         #左側
         print('left1')
