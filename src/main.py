@@ -50,11 +50,11 @@ def on_PostBack(event):
     # )
         columns_list = []
         media_list = insta.GetHashTagMain("豚肉レシピ")
-        columns_list.append(ImageCarouselColumn(image_url=media_list[0]["mediaUrls"][0]))
-        columns_list.append(ImageCarouselColumn(image_url=media_list[1]["mediaUrls"][0]))
-        columns_list.append(ImageCarouselColumn(image_url=media_list[2]["mediaUrls"][0]))
-        columns_list.append(ImageCarouselColumn(image_url=media_list[3]["mediaUrls"][0]))
-        columns_list.append(ImageCarouselColumn(image_url=media_list[4]["mediaUrls"][0]))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[0]["mediaUrls"][0],action=PostbackAction(label='postback1',display_text='postback text1',data='action=buy&itemid=1')))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[1]["mediaUrls"][0],action=PostbackAction(label='postback1',display_text='postback text1',data='action=buy&itemid=1')))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[2]["mediaUrls"][0],action=PostbackAction(label='postback1',display_text='postback text1',data='action=buy&itemid=1')))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[3]["mediaUrls"][0],action=PostbackAction(label='postback1',display_text='postback text1',data='action=buy&itemid=1')))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[4]["mediaUrls"][0],action=PostbackAction(label='postback1',display_text='postback text1',data='action=buy&itemid=1')))
         
         image_carousel_template = TemplateSendMessage(alt_text='Image',template=ImageCarouselTemplate(columns=columns_list))
         linebot_api.reply_message(event.reply_token,messages=image_carousel_template)
@@ -82,5 +82,5 @@ def handle_message(event):
         TextSendMessage(text="テスト中" )
     )
 if __name__ == "__main__":
-    weather_action()
+    # weather_action()
     app.run()
