@@ -2,10 +2,11 @@ from asyncio import InvalidStateError
 from inspect import signature
 from linebot import (LineBotApi,WebhookHandler)
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,PostbackEvent,MessageEvent,TextMessage,TextSendMessage)
+from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,PostbackEvent,MessageEvent,TextMessage,TextSendMessage,CarouselTemplate,CarouselColumn,ImageCarouselColumn,ImageCarouselTemplate,TemplateSendMessage)
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
-# from postback_action_manager import weather_action
+from postback_action_manager import weather_action
+from instagram import Instagram
 
 # import configparser
 # config_ini = configparser.ConfigParser()
@@ -39,13 +40,25 @@ def callback():
 @handler.add(PostbackEvent)
 def on_PostBack(event):
     postback_data = event.postback.data
+    insta = Instagram()
     if postback_data == 'renew':
         #一番左側
-        print('left')
-        linebot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text = "renewです")
-    )
+        # print('left')
+        # linebot_api.reply_message(
+        # event.reply_token,
+        # TextSendMessage(text = "renewです")
+    # )
+        columns_list = []
+        media_list = insta.GetHashTagMain("豚肉レシピ")
+        columns_list.append(ImageCarouselColumn(image_url=media_list[0]["mediaUrls"][0]))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[1]["mediaUrls"][0]))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[2]["mediaUrls"][0]))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[3]["mediaUrls"][0]))
+        columns_list.append(ImageCarouselColumn(image_url=media_list[4]["mediaUrls"][0]))
+        
+        image_carousel_template = TemplateSendMessage(alt_text='Image',template=ImageCarouselTemplate(columns=columns_list))
+        linebot_api.reply_message(event.reply_token,messages=image_carousel_template)
+        
     elif postback_data == 'deadline':
         #左側
         print('left1')
@@ -57,10 +70,10 @@ def on_PostBack(event):
         print('else')
     
 
-    linebot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text = "Postbackからです")
-    )
+    # linebot_api.reply_message(
+    #     event.reply_token,
+    #     TextSendMessage(text = "Postbackからです")
+    # )
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -69,5 +82,5 @@ def handle_message(event):
         TextSendMessage(text="テスト中" )
     )
 if __name__ == "__main__":
-    # weather_action()
-    app.run()
+    weather_action()
+    # app.run()

@@ -115,4 +115,7 @@ class Instagram(object):
         # print("\n================================")
         # print(mediaUrls)
         # print(len(mediaUrls))
-        print(mediaList)
+        # print(mediaList)
+        print(mediaList[0]["mediaUrls"][0])
+        print("\n================================")
+        return mediaList
