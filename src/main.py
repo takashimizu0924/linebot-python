@@ -6,7 +6,7 @@ from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
 # from postback_action_manager import weather_action
-from instagram import Instagram
+from .instagram import Instagram
 
 # import configparser
 # config_ini = configparser.ConfigParser()
