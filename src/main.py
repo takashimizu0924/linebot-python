@@ -5,7 +5,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import ( RichMenu, RichMenuArea,RichMenuSize,RichMenuBounds,PostbackEvent,MessageEvent,TextMessage,TextSendMessage,CarouselTemplate,CarouselColumn,ImageCarouselColumn,ImageCarouselTemplate,TemplateSendMessage)
 from linebot.models.actions import (PostbackAction)
 from flask import Flask, request, abort
-from postback_action_manager import weather_action
+# from postback_action_manager import weather_action
 from instagram import Instagram
 
 # import configparser
@@ -83,4 +83,4 @@ def handle_message(event):
     )
 if __name__ == "__main__":
     weather_action()
-    # app.run()
+    app.run()
